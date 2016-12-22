@@ -29,7 +29,7 @@ class ItemController extends Controller
 
     	Item::create($request->all());
 
-    	return redirect()->route('item.index')
+    	return redirect()->route('items.index')
     					->with('success', 'Item created successfully');
     }
 
@@ -42,7 +42,7 @@ class ItemController extends Controller
     public function edit($id)
     {
     	$item = Item::find($id);
-    	return view('item.edit', compact('item'));
+    	return view('items.edit', compact('item'));
     }
 
     public function update(Request $request, $id)
