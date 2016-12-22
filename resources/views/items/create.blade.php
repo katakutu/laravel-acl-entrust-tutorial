@@ -7,7 +7,7 @@
 	            <h2>Create New Item</h2>
 	        </div>
 	        <div class="pull-right">
-	            <a class="btn btn-primary" href="{{ route('itemCRUD2.index') }}"> Back</a>
+	            <a class="btn btn-primary" href="{{ route('items.index') }}"> Back</a>
 	        </div>
 	    </div>
 	</div>
