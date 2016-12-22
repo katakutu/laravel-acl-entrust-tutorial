@@ -40,7 +40,7 @@ Route::group(['middleware' => 'auth'], function() {
 	Route::patch('roles/{id}', 'RoleController@update')
 		->name('roles.update')
 		->middleware('permission:role-edit');
-	Route::delete('roles/{id}', 'RoleController')
+	Route::delete('roles/{id}', 'RoleController@delete')
 		->name('roles.delete')
 		->middleware('permission:role-delete');
 
@@ -58,10 +58,10 @@ Route::group(['middleware' => 'auth'], function() {
 	Route::get('items/{id}/edit', 'ItemController@edit')
 		->name('items.edit')
 		->middleware('permission:item-edit');
-	Route::patch('items/{id}', 'RoleController@update')
-		->name('items.update');
+	Route::patch('items/{id}', 'ItemController@update')
+		->name('items.update')
 		->middleware('permission:item-edit');
-	Route::delete('items/{id}', 'RoleController@delete')
-		->name('items.delete');
+	Route::delete('items/{id}', 'ItemController@delete')
+		->name('items.delete')
 		->middleware('permission:item-delete');
 });
