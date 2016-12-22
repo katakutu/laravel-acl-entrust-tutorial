@@ -19,14 +19,14 @@ class RoleController extends Controller
 
     public function create()
     {
-    	$Permission = Permission::get();
+    	$permission = Permission::get();
     	return view('roles.create', compact('permission'));
     }
 
     public function store(Request $request)
     {
     	$this->validate($request, [
-    		'name' => 'required|unique:roles, name',
+    		'name' => 'required|unique:roles,name',
     		'display_name' => 'required',
     		'description' => 'required',
     		'permission' => 'required',
@@ -59,11 +59,12 @@ class RoleController extends Controller
     public function edit($id)
     {
     	$role = Role::find($id);
-        $permission = Permission::get();
-        $rolePermissions = DB::table("permission_role")->where("permission_role.role_id",$id)
-            ->lists('permission_role.permission_id','permission_role.permission_id');
+        $permissions = Permission::get();
+        $rolePermissions = DB::table('permission_role')->where('role_id',$id)
+            ->pluck('permission_id')->toArray();
 
-         return view('roles.edit', compact('role', 'permission', 'rolePermissions'));
+        // return $rolePermissions;
+         return view('roles.edit', compact('role', 'permissions', 'rolePermissions'));
     }
 
     public function update(Request $request, $id)
