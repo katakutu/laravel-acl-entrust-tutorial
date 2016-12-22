@@ -25,21 +25,21 @@ Route::group(['middleware' => 'auth'], function() {
 
 	Route::get('roles', 'RoleController@index')
 		->name('roles.index')
-		->middleware('permission:role-list|role-create|role-edit|role-delete');
+		->middleware('role:root');
 	Route::get('roles/create', 'RoleController@create')
-		->name('roles.create')
-		->middleware('permission:role-create');
+		->name('roles.create');
+
 	Route::post('roles/create', 'RoleController@store')
-		->name('roles.store')
-		->middleware('permission:role-create');
+		->name('roles.store');
+		
 	Route::get('roles/{id}', 'RoleController@show')
 		->name('roles.show');
 	Route::get('roles/{id}/edit', 'RoleController@edit')
-		->name('roles.edit')
-		->middleware('permission:role-edit');
+		->name('roles.edit');
+		// ->middleware('permission:role-edit');
 	Route::patch('roles/{id}', 'RoleController@update')
-		->name('roles.update')
-		->middleware('permission:role-edit');
+		->name('roles.update');
+		// ->middleware('permission:role-edit');
 	Route::delete('roles/{id}', 'RoleController@delete')
 		->name('roles.delete')
 		->middleware('permission:role-delete');
@@ -65,3 +65,5 @@ Route::group(['middleware' => 'auth'], function() {
 		->name('items.delete')
 		->middleware('permission:item-delete');
 });
+
+
